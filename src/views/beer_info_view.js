@@ -22,6 +22,18 @@ BeerInfoView.prototype.render = function (beerInfo) {
   this.container.appendChild(beerNameTitle)
   this.container.appendChild(beerName)
   this.container.appendChild(beerTagline)
+
+
+
+//     Description
+// Food_paring,
+// Brewers_tips.
+// Image
+
+  const description =
+  this.createTextElement('h3', `Description: ${beerInfo.description}`)
+  this.container.appendChild(description)
+
 }
 
 BeerInfoView.prototype.createTextElement = function (elementType, beerName) {
