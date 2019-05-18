@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   beerInfoView.bindEvents();
 
   const beers = new Beers;
-  beers.getData()
+  beers.bindEvents();
+  beers.getData();
 
 });

@@ -7,11 +7,13 @@ const BeerListView = function (selectElement) {
 
 BeerListView.prototype.bindEvents = function () {
   PubSub.subscribe('Beers:beers-ready', (event) => {
+    console.log('subscribe on Beers:beers-ready');
     this.populate(event.detail);
   })
   this.element.addEventListener('change', (event) => {
      const selectedIndex = event.target.value;
     PubSub.publish('SelectViewChange', selectedIndex);
+    console.log('publish on SelectViewChange');
   })
 }
 
