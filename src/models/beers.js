@@ -10,9 +10,9 @@ const Beers = function () {
 Beers.prototype.getData = function(){
   const request = new RequestHelper('https://api.punkapi.com/v2/beers');
   request.get().then((data) => {
-    this.munrosData = data;
+    this.beersData = data;
     PubSub.publish('Beers:beers-ready', this.beersData);
-  
+
   });
 }
 

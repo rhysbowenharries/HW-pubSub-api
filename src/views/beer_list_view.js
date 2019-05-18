@@ -1,29 +1,37 @@
 const PubSub = require('../helpers/pub_sub.js');
 const BeerInfoView = require('./beer_info_view');
 
-const BeerListView = function (container) {
-  this.container = container;
+const BeerListView = function (selectElement) {
+  this.element = selectElement;
 };
 
 BeerListView.prototype.bindEvents = function () {
   PubSub.subscribe('Beers:beers-ready', (event) => {
-    this.renderBeerInfoViews(event.detail);
+    this.populate(event.detail);
   })
+  // this.element.addEventListener('change', (event) => {
+  //   const selectedIndex = event.target.value;
+  //   PubSub.publish('SelectViewChange', selectedIndex);
+  // })
 }
 
-BeerListView.prototype.renderBeerInfoViews = function (beers) {
-  beers.forEach((beer) => {
-    const beerItem = this.createBeerListItem(beer);
-    this.container.appendChild(beerItem)
+
+BeerListView.prototype.createBeerListOption = function(name, index) {
+  const option = document.createElement('option')
+  option.textContent = name;
+  option.value = index;
+  return option;
+}
+
+
+BeerListView.prototype.populate = function (beers) {
+  beers.forEach((beer, index) => {
+    const beerOption = this.createBeerListOption(beer.name, index);
+    this.element.appendChild(beerOption)
   })
 };
 
-BeerListView.prototype.createBeerListItem = function(beer) {
-  const beerInfoView = new BeerInfoView();
-  const beerInfo = beerInfoView.createBeerInfo(beer)
-  return beerInfo
-  console.log(beerInfo)
-}
+
 
 
 
