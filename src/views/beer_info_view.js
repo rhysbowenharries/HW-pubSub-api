@@ -16,10 +16,10 @@ BeerInfoView.prototype.clearScreen = function () {
 };
 
 BeerInfoView.prototype.render = function (beerInfo) {
-  const beerNameTitle = this.createTextElement('h1', 'Name')
-  const beerName = this.createTextElement('h2', beerInfo.name)
-  const beerTagline = this.createTextElement('h3', beerInfo.tagline)
-  this.container.appendChild(beerNameTitle)
+
+  const beerName = this.createTextElement('h2', `${beerInfo.name}:`)
+  const beerTagline = this.createTextElement('h3', `"${beerInfo.tagline}.."`)
+
   this.container.appendChild(beerName)
   this.container.appendChild(beerTagline)
 
@@ -32,7 +32,11 @@ BeerInfoView.prototype.render = function (beerInfo) {
 
   const description =
   this.createTextElement('h3', `Description: ${beerInfo.description}`)
-  this.container.appendChild(description)
+this.container.appendChild(description)
+
+const beerImage = document.createElement('img');
+  beerImage.src = beerInfo.image_url;
+  this.container.appendChild(beerImage);
 
 }
 
