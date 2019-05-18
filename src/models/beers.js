@@ -3,7 +3,16 @@ const PubSub = require('../helpers/pub_sub.js');
 
 const Beers = function () {
   this.beersData = [];
+}
 
+Beers.prototype.bindEvents = function () {
+  PubSub.subscribe('SelectViewChange', (event) => {
+
+    const selectedIndex = event.detail;
+    console.log('view change',event.detail );
+    const selectedBeer = this.beersData[selectedIndex]
+    PubSub.publish('Beers:selected-beer-ready', selectedBeer)
+  })
 }
 
 

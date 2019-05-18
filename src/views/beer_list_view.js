@@ -9,10 +9,10 @@ BeerListView.prototype.bindEvents = function () {
   PubSub.subscribe('Beers:beers-ready', (event) => {
     this.populate(event.detail);
   })
-  // this.element.addEventListener('change', (event) => {
-  //   const selectedIndex = event.target.value;
-  //   PubSub.publish('SelectViewChange', selectedIndex);
-  // })
+  this.element.addEventListener('change', (event) => {
+     const selectedIndex = event.target.value;
+    PubSub.publish('SelectViewChange', selectedIndex);
+  })
 }
 
 
